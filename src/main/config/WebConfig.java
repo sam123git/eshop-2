@@ -19,8 +19,8 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan("main")
-public class WebConfig implements WebMvcConfigurer{
-	
+public class WebConfig implements WebMvcConfigurer {
+
 	@Autowired
 	private WebApplicationContext context;
 	
@@ -31,14 +31,14 @@ public class WebConfig implements WebMvcConfigurer{
 		resolver.setSuffix(".html");
 		resolver.setCharacterEncoding("UTF-8");
 		return resolver;
-	}
-
+	}	
+	
 	@Bean
 	public SpringTemplateEngine templateEngine() {
-		SpringTemplateEngine templateEngine = new SpringTemplateEngine(); 
-		templateEngine.setTemplateResolver(templateResolver());
-		return templateEngine;
-	}
+			SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+			templateEngine.setTemplateResolver(templateResolver());
+			return templateEngine;
+		}
 	
 	@Bean
 	public ThymeleafViewResolver viewResolver() {
@@ -46,6 +46,7 @@ public class WebConfig implements WebMvcConfigurer{
 		viewResolver.setTemplateEngine(templateEngine());
 		viewResolver.setCharacterEncoding("UTF-8");
 		return viewResolver;
+			
 	}
 	
 	@Bean
@@ -53,7 +54,7 @@ public class WebConfig implements WebMvcConfigurer{
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
 		messageSource.setBasename("classpath:message");
 		messageSource.setDefaultEncoding("UTF-8");
-		return messageSource;
+		return messageSource;		
 	}
 	
 	@Bean
@@ -63,14 +64,17 @@ public class WebConfig implements WebMvcConfigurer{
 		return bean;
 	}
 	
+	
 	@Override
 	public Validator getValidator() {
 		return createValidator();
 	}
-	
+
 	@Override
-	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-		configurer.enable();
+	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {	
+		configurer.enable();		
 	}
+	
+	
 
 }

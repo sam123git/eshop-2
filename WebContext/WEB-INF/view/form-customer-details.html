@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title> 客 戶 詳 細 資 料 補 充 </title>
+<link th:href="@{/css/style-bgcolor.css}" rel="stylesheet" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm">
+			</div>
+			
+			<div class="col-sm-8">
+				<h1> 新 增/修 改 客 戶 詳 細 資 訊 </h1>
+				
+				<form action="#" th:action="@{/process-form-customer-details}" th:object="${customerDetails}" method="post">
+				
+					<div class="form-group">
+						<input type="hidden" class="form-control" th:field="*{id}">
+					</div>
+								
+					<div class="form-group">
+						<label> 國 家 </label>
+						<label>Country</label>
+						<input type="text" class="form-control" th:field="*{country}">
+					</div>
+					
+					<div class="form-group">
+						<label> 補 充 資 訊  </label>
+						<label>Description</label>
+						<textarea rows="20" class="form-control" th:field="*{description}"></textarea>
+					</div>
+										
+					<div class="form-row">
+						<div class="col">
+							<input class="btn btn-success" type="submit" value=" 確 定 ">
+						</div>
+						<div class="col">
+							<a th:href="@{/show-customer-data}" class="btn btn-warning float-right"> 回 前 一 頁 </a>
+						</div>
+						
+					</div>
+				</form>
+			</div>
+			
+			
+			<div class="col-sm">
+			</div>
+			
+		</div>
+	</div>
+</body>
+</html>

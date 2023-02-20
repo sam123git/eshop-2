@@ -33,12 +33,11 @@ public class DatabaseConfig {
 		dataSource.setUrl(environment.getProperty("jdbc.url"));
 		dataSource.setUsername(environment.getProperty("jdbc.username"));
 		dataSource.setPassword(environment.getProperty("jdbc.password"));
-		return dataSource;
-		
+		return dataSource;		
 	}
 	
 	@Bean
-	public LocalSessionFactoryBean sessionFactoryBean() {	
+	public LocalSessionFactoryBean sessionFactoryBean() {
 		LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
 		localSessionFactoryBean.setDataSource(getDataSource());
 		localSessionFactoryBean.setPackagesToScan(new String[] {"main"});
@@ -53,7 +52,7 @@ public class DatabaseConfig {
 		properties.put("hibernate.hbm2ddl.auto", environment.getProperty("hibernate.hbm2ddl.auto"));
 		return properties;
 	}
-	
+
 	@Bean
 	public HibernateTransactionManager getTransactionManager() {
 		HibernateTransactionManager transactionManager = new HibernateTransactionManager();
