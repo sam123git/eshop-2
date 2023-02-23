@@ -5,17 +5,17 @@ import java.util.List;
 import main.model.Customer;
 
 public interface CustomerService {
+
+	public List<Customer> findAll();
 	
-	public List<Customer> getAll();
-	
-	public Customer getById(long id);
+	public Customer getById(long customerId);
 	
 	public void saveOrUpdate(Customer customer);
 	
-	public void delete(long id);
+	public void delete(long customerId);
 	
-	public void addCustomerDetailsIfNotExists(Customer customer);
+//	public Customer getByIdWithComments(long customerId);
 	
-	public Customer getByIdWithComments(long id);
-
+	public void addUserToCustomer(long customerId, String login);
+	
 }
