@@ -1,61 +1,75 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:th="http://www.thymeleaf.org">
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
-<title>Tours page</title>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<title> 客 戶 資 料 管 理 頁 面 </title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style-bgcolor.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/all.css}"/>
+<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery-3.4.1.slim.min.js}"></script>
 </head>
 <body>
 	<div class="container">
 		<div class="row">
-			<h1>List of available tours</h1>
+			<h1> 可 瀏 覽 的 客 戶 列 表 </h1>
 		</div>
-		
 		<div class="row">
-			<table class="table table-hover" th:if="${!tours.empty}">
+			<table class="table table-hover" th:if="${!customers.empty}">
 				<thead>
 					<tr>
-						<th scope="col">#</th>
-						<th scope="col">Name</th>
-						<th scope="col">Code</th>
-						<th scope="col">Continent</th>
-						<th scope="col">Date</th>
-						<th scope="col">Duration</th>
-						<th scope="col">All Inclusive</th>
-						<th scope="col">Edit</th>
-						<th scope="col">Edit details</th>
-						<th scope="col">Remove</th>
-						<th scope="col">Details</th>
+						<th scope="col"> # </th>
+						<th scope="col"> 公 司 名 稱 </th>
+						<th scope="col"> 聯 絡 人 </th>
+						<th scope="col"> 郵 遞 區 號 </th>
+						<th scope="col"> 聯 絡 電 話 </th>
+						<th scope="col"> 城 市 </th>	
+						<th scope="col"> 區 域 </th>	
+						<th scope="col"> 是否接受寄送 </th>					
+						<th sec:authorize="hasRole('EMPLOYEE')" scope="col">     </th>
+						<th sec:authorize="hasRole('ADMIN')" scope="col">     </th>
+						<th sec:authorize="hasRole('CLIENT')" scope="col">登入</th>					
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="tour : ${tours}">
-						<td th:text="${tourStat.count}"></td>					
-						<td th:text="${tour.name}"></td>
-						<td th:text="${tour.code}"></td>
-						<td th:text="${tour.continent}"></td>
-						<td th:text="${#dates.format(tour.date, 'yyyy-MM-dd')}"></td>
-						<td th:text="${tour.duration}"></td>
-						<td th:text="${tour.allInclusive}"></td>
-						<td><a class="btn btn-primary" th:href="@{/editTour/} + ${tour.id}">Edit</a></td>
-						<td><a class="btn btn-primary" th:href="@{/editTourDetail/} + ${tour.id}">Edit details</a></td>
-						<td><a class="btn btn-danger" th:href="@{/deleteTour/} + ${tour.id}">Delete</a></td>
-						<td><a class="btn btn-success" th:href="@{/showTourDetail/} + ${tour.id}">Details</a></td>
+					<tr th:each="customer : ${customers}">
+						<td th:text="${customerStat.count}"></td>
+						<td th:text="${customer.companyName}"></td>
+						<td th:text="${customer.contactName}"></td>
+						<td th:text="${customer.postalcode}"></td>
+						<td th:text="${customer.phonenumber}"></td>
+						<td th:text="${customer.city}"></td>
+						<td th:text="${customer.district}"></td>
+						<td th:text="${customer.allInclusive} ? '是' : '否'"></td>				
+						<td sec:authorize="hasRole('EMPLOYEE')"><a class="btn btn-primary" th:href="@{/edit-customer/} + ${customer.customerId}">修改資料</a></td>
+						<td sec:authorize="hasRole('ADMIN')"><a class="btn btn-danger" th:href="@{/delete-customer/} + ${customer.customerId}" onclick="myFunction2()">移除資料</a></td>																							
+						<td sec:authorize="hasRole('CLIENT')"><a class="btn btn-success" th:href="@{/add-user-to-customer/} + ${customer.customerId}">登入</a></td>
+						
 					</tr>
 				</tbody>
 			</table>
+		       <script>
+					  function myFunction2() {
+					  let text;
+					  if (confirm("資料確認刪除嗎？") == true) {
+						  window.alert(text = "已刪除資料");
+					  } else {
+						  window.alert(text = "取消刪除資料");	
+						  event.preventDefault();
+						  return false;
+					  }				
+					}
+				</script>
+		</div>		
+		<div class="row" th:if="${customers.empty}">
+			<h3> 資料表中沒有可以顯示的客戶！ </h3>
 		</div>
 		
-		<div class="row" th:if="${tours.empty}">
-			<h3>No tours in the offer</h3>
-		</div>
-		
-		<div class="row">
-			<a th:href="@{/}" class="btn btn-warning">Back</a>
+		<div class="row-sm-2">
+			<a th:href="@{/}" class="btn btn-warning"> 回前一頁 </a>
 		</div>
 	</div>
 </body>

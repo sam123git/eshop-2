@@ -22,7 +22,7 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
-	private long id;
+	private long productId;
 	
 	@ManyToOne
 	@JoinColumn(name = "brand_brand_id")
@@ -47,14 +47,6 @@ public class Product {
 //    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 //    @JoinColumn(name = "brand_id")
 //    private Brand brand;
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public Brand getBrand() {
 		return brand;
@@ -94,6 +86,14 @@ public class Product {
 
 	public void setProductPrice(BigDecimal productPrice) {
 		this.productPrice = productPrice;
+	}
+
+	public long getProductId() {
+		return productId;
+	}
+
+	public void setProductId(long productId) {
+		this.productId = productId;
 	}
 
 }

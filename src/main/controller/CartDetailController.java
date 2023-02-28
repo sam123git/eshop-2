@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;
 
 import javassist.expr.NewArray;
 import main.model.Cart;
@@ -20,6 +21,9 @@ import main.service.CartService;
 
 @Controller
 public class CartDetailController {
+	
+	@Autowired
+	RequestMappingInfoHandlerMapping requestMappingInfoHandlerMapping;
 
 	@Autowired
 	private CartDetailService cartDetailService;

@@ -24,7 +24,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableTransactionManagement
 @EnableJpaRepositories("main.repository")
 public class DatabaseConfig {
-	
+
 	@Autowired
 	private Environment environment;
 	
@@ -36,11 +36,10 @@ public class DatabaseConfig {
 		dataSource.setUsername(environment.getProperty("jdbc.username"));
 		dataSource.setPassword(environment.getProperty("jdbc.password"));
 		return dataSource;
-		
 	}
 	
 	@Bean(name = "entityManagerFactory")
-	public LocalSessionFactoryBean sessionFactoryBean() {	
+	public LocalSessionFactoryBean sessionFactoryBean() {
 		LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
 		localSessionFactoryBean.setDataSource(getDataSource());
 		localSessionFactoryBean.setPackagesToScan(new String[] {"main"});
@@ -62,4 +61,5 @@ public class DatabaseConfig {
 		transactionManager.setSessionFactory(sessionFactoryBean().getObject());
 		return transactionManager;
 	}
+	
 }

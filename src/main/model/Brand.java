@@ -21,7 +21,7 @@ public class Brand {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "brand_id")
-	private long id;
+	private long brandId;
 	
     @NotBlank(message = "{brand.description.notblank}")
     @Size(min = 2, message = "{brand.description.size}")
@@ -37,14 +37,6 @@ public class Brand {
     @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Product> products;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getBrandDescription() {
         return brandDescription;
     }
@@ -59,6 +51,14 @@ public class Brand {
 
 	public void setProducts(List<Product> products) {
 		this.products = products;
+	}
+
+	public long getBrandId() {
+		return brandId;
+	}
+
+	public void setBrandId(long brandId) {
+		this.brandId = brandId;
 	}
 
 }

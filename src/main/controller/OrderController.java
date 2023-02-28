@@ -12,12 +12,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;
 
 import main.model.Order;
 import main.service.OrderService;
 
 @Controller
 public class OrderController {
+	
+	@Autowired
+	RequestMappingInfoHandlerMapping requestMappingInfoHandlerMapping;
 	
 	@Autowired
 	private OrderService orderService;

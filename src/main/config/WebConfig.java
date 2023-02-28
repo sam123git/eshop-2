@@ -20,8 +20,8 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan("main")
-public class WebConfig implements WebMvcConfigurer{
-	
+public class WebConfig implements WebMvcConfigurer {
+
 	@Autowired
 	private WebApplicationContext context;
 	
@@ -33,7 +33,7 @@ public class WebConfig implements WebMvcConfigurer{
 		resolver.setCharacterEncoding("UTF-8");
 		return resolver;
 	}
-
+	
 	@Bean
 	public SpringTemplateEngine templateEngine() {
 		SpringTemplateEngine templateEngine = new SpringTemplateEngine();
@@ -69,7 +69,7 @@ public class WebConfig implements WebMvcConfigurer{
 	public Validator getValidator() {
 		return createValidator();
 	}
-	
+
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();

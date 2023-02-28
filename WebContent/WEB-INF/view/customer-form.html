@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title> 客 戶 資 料 輸 入 表 單 </title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style-bgcolor.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/all.css}"/>
+<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery-3.4.1.slim.min.js}"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm">
+			</div>
+			
+			<div class="col-sm-8">
+				<h1> 新 增 客 戶 個 人 資 料 </h1>
+				
+				<form action="#" th:action="@{/process-customer-form}" th:object="${customer}" method="post">
+				
+					<div class="form-group">
+						<input type="hidden" class="form-control" th:field="*{customerId}">
+					</div>
+								
+					<div class="form-group">
+					    <label> 公 司 名 稱 </label>
+						<label>Company Name</label>
+						<input type="text" class="form-control" th:field="*{companyName}">
+					    <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('companyName')}" th:errors="*{companyName}"></div>												
+					</div>
+					
+					<div class="form-group">
+						<label> 聯 絡 人 </label>
+						<label>Contact Name</label>
+						<input type="text" class="form-control" th:field="*{contactName}">
+					    <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('contactName')}" th:errors="*{contactName}"></div>												
+					</div>
+					
+					<div class="form-group">
+						<label> 郵 遞 區 號 </label>
+						<label>Postal Code</label>
+						<select name="postalcode" class="form-control">
+							<option th:each="postalcode : ${T(main.model.Customer.Postalcode).values()}"
+									th:value="${postalcode}" th:text="${postalcode}"></option>
+						</select>
+					</div>					
+					
+					<div class="form-group">
+						<label> 聯 絡 電 話 </label>
+						<label>Phone Number</label>
+						<input type="text" class="form-control" th:field="*{phonenumber}">
+					    <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('phonenumber')}" th:errors="*{phonenumber}"></div>					
+					</div>	
+					
+					<div class="form-group">
+						<label> 城 市 </label>
+						<label>City</label>
+						<select name="city" class="form-control">
+							<option th:each="city : ${T(main.model.Customer.City).values()}"
+									th:value="${city}" th:text="${city}"></option>
+						</select>
+					</div>									
+					
+					<div class="form-group">
+						<label> 區 域 </label>
+						<label>District</label>
+						<input type="text" class="form-control" th:field="*{district}">
+					    <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('district')}" th:errors="*{district}"></div>												
+					</div>
+					
+					<div class="form-group">
+						<label>是否願意接受我們寄送的優惠訊息</label>
+						<input type="checkbox" th:field="*{allInclusive}">
+					</div>
+																				
+					<div class="form-row">
+						<div class="col">
+							<input class="btn btn-success" type="submit" value=" 確 定 " onclick="myFunction()">																	
+							<script>
+								function myFunction() {
+								  let text; 
+								  if (confirm("表單確認送出嗎？") == true) {
+									  window.alert(text = "表單會在正確填寫後送出");
+									  } else {
+										  window.alert(text = "取消送出表單");
+										  event.preventDefault();
+										  return false;
+									   }						
+								   }
+							</script>
+						</div>
+						<div class="col">
+							<a th:href="@{/}" class="btn btn-warning float-right"> 回前一頁 </a>
+						</div>					
+					</div>					
+				</form>
+			</div>
+			<div class="col-sm">
+			</div>			
+		</div>
+	</div>
+</body>
+</html>
