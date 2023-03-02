@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title> eshop </title>
+		<link rel="icon" type="image/x-icon" th:href="@{/resources/ico/favicon.ico}">
+	 	<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style-bgcolor.css}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/all.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/resources/css/bootstrap.min.css}">
+        <script th:src="@{/resources/js/popper.min.js}"></script>
+        <script th:src="@{/resources/js/jquery-3.6.3.min.js}"></script>
+        <script th:src="@{/resources/js/bootstrap.bundle.min.js}"></script>     
+</head>
+<body>
+	<div class="container px-5 my-5">
+           <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
+               <div class="mb-4 mb-xl-0">
+                   <div class="fs-3 fw-bold text-white"> 最好的產品--直送您手 </div>
+                   <div class="text-white-50"> 註冊以獲取關於我們的產品的最新消息 </div>
+               </div>
+               <div class="ms-xl-4">
+                   <div class="input-group mb-2">
+                       <input class="form-control" type="text" placeholder="Email address..." aria-label="Email address..." aria-describedby="button-newsletter" />
+                       <button class="btn btn-outline-light" id="button-newsletter" type="button" th:href="@{/sign-up}">註冊</button>
+                   </div>
+                   <div class="small text-white-50">We care about privacy, and will never share your data.</div>
+               </div>
+           </div>
+   	</div>
+</body>
+</html>

@@ -16,33 +16,7 @@
 	<body class="d-flex flex-column h-100">
 		<main class="flex-shrink-0">
             <!-- Navigation-->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-                <div class="container px-5">
-                    <a class="navbar-brand" th:href="@{/}">eshop</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li sec:authorize="!isAnonymous()" class="nav-item"><a class="nav-link" th:href="@{/show-products}">產品維護</a></li>
-                            <li sec:authorize="!isAnonymous()" class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolioOrder" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">訂單</a>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolioOrder">
-                                    <li><a class="dropdown-item" th:href="@{/add-order}">新增訂單</a></li>
-                                    <li><a class="dropdown-item" th:href="@{/show-order}">管理訂單</a></li>
-                                </ul>
-                            </li>
-                            <li sec:authorize="!isAnonymous()" class="nav-item"><a class="nav-link" th:href="@{/show-cart}">購物車</a></li>
-                            <li sec:authorize="!isAnonymous()" class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolioCustomer" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">會員</a>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolioCustomer">
-                                    <li><a class="dropdown-item" href="@{/customer-home}">基本資料</a></li>
-                                    <li><a sec:authorize="isAnonymous()" class="dropdown-item" th:href="@{/logout}">登入</a></li>
-                                    <li><a sec:authorize="!isAnonymous()" class="dropdown-item" th:href="@{/logout}">登出</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <div th:replace="header :: header"></div> 
             <!-- Blog preview section-->
             <section class="py-5">
                 <div class="container px-5 my-5">
@@ -91,20 +65,23 @@
                 </div>
             </section>
         </main>
-        <!-- Footer-->
-        <footer class="bg-dark py-4 mt-auto">
-            <div class="container px-5">
-                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; eshop 2022</div></div>
-                    <div class="col-auto">
-                        <a class="link-light small" href="#!">Privacy</a>
-                        <span class="text-white mx-1">&middot;</span>
-                        <a class="link-light small" href="#!">Terms</a>
-                        <span class="text-white mx-1">&middot;</span>
-                        <a class="link-light small" href="#!">Contact</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <!-- Call to action-->  
+                    <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
+                        <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
+                            <div class="mb-4 mb-xl-0">
+                                <div class="fs-3 fw-bold text-white">隨時收到最新商品</div>
+                                <div class="text-white-50">註冊以獲得我們寄送的最新產品的消息</div>
+                            </div>
+                            <div class="ms-xl-4">
+                                <div class="input-group mb-2">
+                                    <input class="form-control" type="text" placeholder="Email address..." aria-label="Email address..." aria-describedby="button-newsletter" />
+                                    <button class="btn btn-outline-light" id="button-newsletter" type="button" th:href="@{/sign-up}">註冊</button>
+                                </div>
+                                <div class="small text-white-50">我們注重隱私,且絕不會與他人分享您的資料</div>
+                            </div>
+                        </div>
+                    </aside> 
+  		 <!-- Footer-->
+        <div th:replace="footer :: footer"></div>
 	</body>
 </html>
