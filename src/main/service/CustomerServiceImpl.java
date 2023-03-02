@@ -59,13 +59,26 @@ public class CustomerServiceImpl implements CustomerService{
 		customerRepository.deleteById(customerId);	
 	}
 
+//	@Override
+//	public void addUserToCustomer(long customerId, long userId) {
+//		Customer customer = getById(customerId);
+//		if(customer.getUsers() == null) {
+//			customer.setUsers(new ArrayList<>());
+//		}
+//		User user = userRepository.getOne(userId);
+//		if(user != null) {
+//			customer.getUsers().add(user);
+//			saveOrUpdate(customer);
+//		}
+//	}
+	
 	@Override
-	public void addUserToCustomer(long customerId, long userId) {
+	public void addUserToCustomer(long customerId, String login) {
 		Customer customer = getById(customerId);
 		if(customer.getUsers() == null) {
 			customer.setUsers(new ArrayList<>());
 		}
-		User user = userRepository.getOne(userId);
+		User user = userRepository.findByLogin(login);
 		if(user != null) {
 			customer.getUsers().add(user);
 			saveOrUpdate(customer);

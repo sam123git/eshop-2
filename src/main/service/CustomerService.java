@@ -16,8 +16,8 @@ public interface CustomerService {
 	
 //	public Customer getByIdWithComments(long customerId);
 	
-//	public void addUserToCustomer(long customerId, long login);
+	public void addUserToCustomer(long customerId, String login);
 	
-	public void addUserToCustomer(long customerId, long userId);
+//	public void addUserToCustomer(long customerId, long userId);
 
 }

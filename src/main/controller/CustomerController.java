@@ -1,5 +1,6 @@
 package main.controller;
 
+import java.security.Principal;
 //import java.security.Principal;
 import java.util.List;
 
@@ -69,17 +70,17 @@ public class CustomerController {
 			return "redirect:/show-customer-data";
 		}
 		
-//		@GetMapping("/add-user-to-customer/{customerId}")
-//		public String addUserToCustomer(@PathVariable long customerId, Principal principal) {
-//			customerService.addUserToCustomer(customerId, principal.getName());
-//			return "redirect:/show-customer-data";
-//		}
-		
-		@GetMapping("/add-user-to-customer/{customerId}/{userId}")
-		public String addUserToCustomer(@PathVariable long customerId, @PathVariable long userId) {
-			customerService.addUserToCustomer(customerId, userId);
+		@GetMapping("/add-user-to-customer/{customerId}")
+		public String addUserToCustomer(@PathVariable long customerId, Principal principal) {
+			customerService.addUserToCustomer(customerId, principal.getName());
 			return "redirect:/show-customer-data";
 		}
+		
+//		@GetMapping("/add-user-to-customer/{customerId}/{userId}")
+//		public String addUserToCustomer(@PathVariable long customerId, @PathVariable long userId) {
+//			customerService.addUserToCustomer(customerId, userId);
+//			return "redirect:/show-customer-data";
+//		}
 		
 		@RequestMapping("/customer-home")
 		public String getCustomerHome() {

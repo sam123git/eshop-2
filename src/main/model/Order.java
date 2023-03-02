@@ -49,7 +49,7 @@ public class Order {
 
 //	@OneToOne(cascade = CascadeType.ALL)
 //	@JoinColumn(name = "order_details_id")
-//	private OrderDetail orderDetail1;
+//	private OrderDetail orderDetail;
 	
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
 	private List<OrderDetail> orderDetails;
@@ -116,7 +116,7 @@ public class Order {
 //	public void setOrderDetail(OrderDetail orderDetail) {
 //		this.orderDetail = orderDetail;
 //	}
-
+//
 //	public OrderDetail getOrderDetail1() {
 //		return orderDetail1;
 //	}
