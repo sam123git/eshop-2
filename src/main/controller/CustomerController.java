@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;
 
 import main.model.Customer;
@@ -78,6 +79,11 @@ public class CustomerController {
 		public String addUserToCustomer(@PathVariable long customerId, @PathVariable long userId) {
 			customerService.addUserToCustomer(customerId, userId);
 			return "redirect:/show-customer-data";
+		}
+		
+		@RequestMapping("/customer-home")
+		public String getCustomerHome() {
+			return "home";
 		}
 	
 	

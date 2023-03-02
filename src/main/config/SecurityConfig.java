@@ -1,8 +1,5 @@
 package main.config;
 
-import javax.sql.DataSource;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -20,8 +17,8 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private DataSource dataSource;
+//	@Autowired
+//	private DataSource dataSource;
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -30,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Bean
 	public AccessDeniedHandler accessDeniedHandler() {
-		return new CustomerAccessDeniedHandler();
+		return new EshopAccessDeniedHandler();
 	}
 
 	@Override
@@ -58,12 +55,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 			.antMatchers("/", "/login")
 				.permitAll()
+
 			.antMatchers("/add-customer", "/edit-customer")
 				.hasAnyRole("EMPLOYEE")
 			.antMatchers("/delete-customer")
 				.hasAnyRole("ADMIN")
 			.antMatchers("/add-user-to-customer")
 				.hasAnyRole("CLIENT")
+
+			.antMatchers("/add-order", "/show-order", "/edit-order")
+				.hasAnyRole("ADMIN", "EMPLOYEE")
 			.and()
 				.formLogin()
 				.loginPage("/login")

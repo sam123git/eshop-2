@@ -6,8 +6,10 @@
         <meta charset="UTF-8">
         <title>eshop</title>
         <link rel="icon" type="image/x-icon" th:href="@{resources/ico/favicon.ico}">
-        <link rel="stylesheet" type="text/css" th:href="@{resources/css/styles.css}">
+	 	<link rel="stylesheet" type="text/css" th:href="@{resources/css/style-bgcolor.css}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{resources/css/all.css}"/>
         <link rel="stylesheet" type="text/css" th:href="@{resources/css/bootstrap.min.css}">
+        <script th:src="@{resources/js/popper.min.js}"></script>
         <script th:src="@{resources/js/jquery-3.6.3.min.js}"></script>
         <script th:src="@{resources/js/bootstrap.bundle.min.js}"></script>
 	</head>
@@ -20,7 +22,7 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li sec:authorize="!isAnonymous()" class="nav-item"><a class="nav-link" href="#">產品維護</a></li>
+                            <li sec:authorize="!isAnonymous()" class="nav-item"><a class="nav-link" th:href="@{/show-order}">產品維護</a></li>
                             <li sec:authorize="!isAnonymous()" class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolioOrder" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">訂單</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolioOrder">
@@ -28,11 +30,11 @@
                                     <li><a class="dropdown-item" th:href="@{/show-order}">管理訂單</a></li>
                                 </ul>
                             </li>
-                            <li sec:authorize="!isAnonymous()" class="nav-item"><a class="nav-link" href="#">購物車</a></li>
+                            <li sec:authorize="!isAnonymous()" class="nav-item"><a class="nav-link" th:href="@{/show-cart}">購物車</a></li>
                             <li sec:authorize="!isAnonymous()" class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolioCustomer" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">會員</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolioCustomer">
-                                    <li><a class="dropdown-item" href="#">基本資料</a></li>
+                                    <li><a class="dropdown-item" href="@{/customer-home}">基本資料</a></li>
                                     <li><a class="dropdown-item" th:href="@{/logout}">登出</a></li>
                                 </ul>
                             </li>
@@ -70,10 +72,10 @@
 									<td th:text="${order.customerId}"></td>
 									<td th:text="${order.payment}"></td>
 									<td th:text="${order.amount}"></td>
-									<td><a class="btn btn-primary" th:href="@{/edit-order/} + ${order.orderId}">編輯</a></td>
-									<td><a class="btn btn-primary" th:href="@{/edit-order-details/} + ${order.orderId}">編輯</a></td>
+                                    <td><a class="btn btn-primary" th:href="@{/edit-order/} + ${order.orderId}">編輯</a></td>
+                                    <td><a class="btn btn-primary" th:href="@{/edit-order-detail/} + ${order.orderId}">編輯</a></td>
 									<td><a class="btn btn-danger" th:href="@{/delete-order/} + ${order.orderId}">刪除</a></td>
-									<td><a class="btn btn-success" th:href="@{/show-order-details/} + ${order.orderId}">顯示</a></td>
+									<td><a class="btn btn-success" th:href="@{/show-order-detail/} + ${order.orderId}">顯示</a></td>
 								</tr>
 							</tbody>
 						</table>

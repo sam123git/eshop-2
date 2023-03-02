@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <meta charset="UTF-8">
+        <title>eshop</title>
+        <link rel="icon" type="image/x-icon" th:href="@{resources/ico/favicon.ico}">
+	 	<link rel="stylesheet" type="text/css" th:href="@{resources/css/style-bgcolor.css}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{resources/css/all.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{resources/css/bootstrap.min.css}">
+        <script th:src="@{resources/js/popper.min.js}"></script>
+        <script th:src="@{resources/js/jquery-3.6.3.min.js}"></script>
+        <script th:src="@{resources/js/bootstrap.bundle.min.js}"></script>
+    </head>
+    <body class="d-flex flex-column h-100">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+                <div class="container px-5">
+                    <a class="navbar-brand" th:href="@{/}">eshop</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li sec:authorize="!isAnonymous()" class="nav-item"><a class="nav-link" th:href="@{/show-order}">產品維護</a></li>
+                            <li sec:authorize="!isAnonymous()" class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolioOrder" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">訂單</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolioOrder">
+                                    <li><a class="dropdown-item" th:href="@{/add-order}">新增訂單</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/show-order}">管理訂單</a></li>
+                                </ul>
+                            </li>
+                            <li sec:authorize="!isAnonymous()" class="nav-item"><a class="nav-link" th:href="@{/show-cart}">購物車</a></li>
+                            <li sec:authorize="!isAnonymous()" class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolioCustomer" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">會員</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolioCustomer">
+                                    <li><a class="dropdown-item" th:href="@{/customer-home}">基本資料</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/logout}">登出</a></li>
+                                </ul>
+                            </li>
+                            <li sec:authorize="isAnonymous()" class="nav-item"><a class="nav-link" th:href="@{/login}">登入</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Blog preview section-->
+            <section class="py-5">
+                <div class="container px-5 my-5">
+                    <div class="row">
+                      <h1 th:text="${order.orderId} + ' details'"></h1>
+                    </div>
+
+                    <div class="row">
+                      <label>產品編號</label>
+                      <input type="text" class="form-control" th:field="${order.orderDetail.productId}" readonly>
+                    </div>
+
+                    <div class="row">
+                      <label>單價</label>
+                      <input type="text" class="form-control" th:field="${order.orderDetail.orderPrice}" readonly>
+                    </div>
+
+                    <div class="row">
+                      <label>購買數量</label>
+                      <input type="text" class="form-control" th:field="${order.orderDetail.orderQuantity}" readonly>
+                    </div>
+
+                    <div class="row">
+                      <label>折扣</label>
+                      <input type="text" class="form-control" th:field="${order.orderDetail.discount}" readonly>
+                    </div>
+
+                    <div class="row">
+                      <a th:href="@{/show-order}" class="btn btn-warning">返回</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Footer-->
+        <footer class="bg-dark py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; eshop 2022</div></div>
+                    <div class="col-auto">
+                        <a class="link-light small" href="#!">Privacy</a>
+                        <span class="text-white mx-1">&middot;</span>
+                        <a class="link-light small" href="#!">Terms</a>
+                        <span class="text-white mx-1">&middot;</span>
+                        <a class="link-light small" href="#!">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

@@ -13,9 +13,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -50,6 +54,10 @@ public class Cart {
 	
 	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<CartDetail> cartDetails;
+	
+    private Date createTime;
+	
+	private Date updateTime;
 
     public long getCartId() {
         return cartId;
@@ -82,5 +90,25 @@ public class Cart {
     public void setCartDetails(List<CartDetail> cartDetails) {
         this.cartDetails = cartDetails;
     }
+    
+    @Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
+	@Column(name = "CREATE_TIME", length = 7, updatable = false)
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@UpdateTimestamp
+	@Column(name = "UPDATE_TIME", length = 7)
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
 
 }

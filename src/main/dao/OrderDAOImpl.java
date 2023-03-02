@@ -1,15 +1,12 @@
 package main.dao;
 
-import java.util.List;
-
-import javax.transaction.Transactional;
-
+import main.model.Order;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import main.model.Order;
+import java.util.List;
 
 @Repository
 public class OrderDAOImpl implements OrderDAO {

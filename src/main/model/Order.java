@@ -10,14 +10,20 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity(name = "orders")
 public class Order {
 
 	public enum Payment {
-		現金, 信用卡;
+		money, card;
 	}
+
+//	public Order() {
+//		setOrderDetail1(new OrderDetail());
+//	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,14 +47,19 @@ public class Order {
 	@Column(name = "amount")
 	private BigDecimal amount = new BigDecimal("0");
 
-	/*
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "order_details_id")
-	private OrderDetails orderDetails;
-	*/
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "order_details_id")
+//	private OrderDetail orderDetail1;
 	
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
 	private List<OrderDetail> orderDetails;
+	
+//	@Column(name = "order_detail1")
+//	private OrderDetail orderDetail1;
+	
+    private Date createTime;
+	
+	private Date updateTime;
 
 	public long getOrderId() {
 		return orderId;
@@ -96,6 +107,42 @@ public class Order {
 
 	public void setOrderDetails(List<OrderDetail> orderDetails) {
 		this.orderDetails = orderDetails;
+	}
+		
+//	public OrderDetail getOrderDetail() {
+//		return orderDetail;
+//	}
+//
+//	public void setOrderDetail(OrderDetail orderDetail) {
+//		this.orderDetail = orderDetail;
+//	}
+
+//	public OrderDetail getOrderDetail1() {
+//		return orderDetail1;
+//	}
+//
+//	public void setOrderDetail1(OrderDetail orderDetail1) {
+//		this.orderDetail1 = orderDetail1;
+//	}
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
+	@Column(name = "CREATE_TIME", length = 7, updatable = false)
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@UpdateTimestamp
+	@Column(name = "UPDATE_TIME", length = 7)
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
 	
 }

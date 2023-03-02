@@ -5,7 +5,10 @@
         <meta charset="utf-8" />
         <title>eshop</title>
         <link rel="icon" type="image/x-icon" th:href="@{resources/ico/favicon.ico}">
+	 	<link rel="stylesheet" type="text/css" th:href="@{resources/css/style-bgcolor.css}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{resources/css/all.css}"/>
         <link rel="stylesheet" type="text/css" th:href="@{resources/css/bootstrap.min.css}">
+        <script th:src="@{resources/js/popper.min.js}"></script>
         <script th:src="@{resources/js/jquery-3.6.3.min.js}"></script>
         <script th:src="@{resources/js/bootstrap.bundle.min.js}"></script>
 	</head>
@@ -14,17 +17,17 @@
             <!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container px-5">
-                    <a class="navbar-brand" th:href="@{/demo}">eshop</a>
+                    <a class="navbar-brand" th:href="@{/}">eshop</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li class="nav-item"><a class="nav-link" th:href="@{/demo}">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="about.html">Log in</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/login}">登入</a></li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">User</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                                     <li><a class="dropdown-item" th:href="@{/show-cart}">購物車</a></li>
-                                    <li><a class="dropdown-item" href="portfolio-item.html">Log out</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/logout}">登出</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -93,7 +96,7 @@
                             <div class="ms-xl-4">
                                 <div class="input-group mb-2">
                                     <input class="form-control" type="text" placeholder="Email address..." aria-label="Email address..." aria-describedby="button-newsletter" />
-                                    <button class="btn btn-outline-light" id="button-newsletter" type="button">Sign up</button>
+                                    <button class="btn btn-outline-light" id="button-newsletter" type="button" th:href="@{/sign-up}">註冊</button>
                                 </div>
                                 <div class="small text-white-50">We care about privacy, and will never share your data.</div>
                             </div>

@@ -72,7 +72,7 @@ public class ProductController {
         return "product-form";
     }
 
-    @PostMapping(value = "process-product-form")
+    @PostMapping(value = "process-product-brand-form")
     public String showBrandDetail(Product product) {
         return "product-form";
     }
