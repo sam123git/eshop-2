@@ -5,15 +5,36 @@
 <head>
 <meta charset="UTF-8">
 <title> 客 戶 資 料 管 理 頁 面 </title>
-<link rel="icon" type="image/x-icon" th:href="@{resources/ico/favicon.ico}">
-	 	<link rel="stylesheet" type="text/css" th:href="@{resources/css/style-bgcolor.css}"/>
-		<link rel="stylesheet" type="text/css" th:href="@{resources/css/all.css}"/>
-        <link rel="stylesheet" type="text/css" th:href="@{resources/css/bootstrap.min.css}">
-        <script th:src="@{resources/js/popper.min.js}"></script>
-        <script th:src="@{resources/js/jquery-3.6.3.min.js}"></script>
-        <script th:src="@{resources/js/bootstrap.bundle.min.js}"></script>
+<link rel="icon" type="image/x-icon" th:href="@{/resources/ico/favicon.ico}">
+	 	<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style-bgcolor.css}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/all.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/resources/css/bootstrap.min.css}">
+        <script th:src="@{/resources/js/popper.min.js}"></script>
+        <script th:src="@{/resources/js/jquery-3.6.3.min.js}"></script>
+        <script th:src="@{/resources/js/bootstrap.bundle.min.js}"></script>
 </head>
-<body>
+<body class="d-flex flex-column h-100">
+	<main class="flex-shrink-0">
+    <!-- Navigation-->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container px-5">
+            <a class="navbar-brand" th:href="@{/}">eshop</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" th:href="@{/}">首頁</a></li>                         
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">會員</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                            <li><a class="dropdown-item" th:href="@{/show-cart}">購物車</a></li>
+                            <li><a sec:authorize="isAnonymous()" class="dropdown-item" th:href="@{/logout}">登入</a></li>
+                            <li><a sec:authorize="!isAnonymous()" class="dropdown-item" th:href="@{/logout}">登出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 	<div class="container">
 		<div class="row">
 			<h1> 可 瀏 覽 的 客 戶 列 表 </h1>
@@ -32,7 +53,6 @@
 						<th scope="col"> 是否接受寄送 </th>					
 						<th sec:authorize="hasRole('EMPLOYEE')" scope="col">     </th>
 						<th sec:authorize="hasRole('ADMIN')" scope="col">     </th>
-						<th sec:authorize="hasRole('CLIENT')" scope="col">登入</th>					
 					</tr>
 				</thead>
 				<tbody>
@@ -46,9 +66,7 @@
 						<td th:text="${customer.district}"></td>
 						<td th:text="${customer.allInclusive} ? '是' : '否'"></td>				
 						<td sec:authorize="hasRole('EMPLOYEE')"><a class="btn btn-primary" th:href="@{/edit-customer/} + ${customer.customerId}">修改資料</a></td>
-						<td sec:authorize="hasRole('ADMIN')"><a class="btn btn-danger" th:href="@{/delete-customer/} + ${customer.customerId}" onclick="myFunction2()">移除資料</a></td>																							
-						<td sec:authorize="hasRole('CLIENT')"><a class="btn btn-success" th:href="@{/add-user-to-customer/} + ${customer.customerId}">登入</a></td>
-						
+						<td sec:authorize="hasRole('ADMIN')"><a class="btn btn-danger" th:href="@{/delete-customer/} + ${customer.customerId}" onclick="myFunction2()">移除資料</a></td>																													
 					</tr>
 				</tbody>
 			</table>
@@ -70,8 +88,26 @@
 		</div>
 		
 		<div class="row-sm-2">
-			<a th:href="@{/}" class="btn btn-warning"> 回前一頁 </a>
+			<a th:href="@{/customer-home}" class="btn btn-warning"> 返回 </a>
 		</div>
-	</div>
+		</div>
+		<!-- Call to action-->
+               
+        </main>
+        <!-- Footer-->
+        <footer class="bg-dark py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; eshop 2022</div></div>
+                    <div class="col-auto">
+                        <a class="link-light small" href="#!">Privacy</a>
+                        <span class="text-white mx-1">&middot;</span>
+                        <a class="link-light small" href="#!">Terms</a>
+                        <span class="text-white mx-1">&middot;</span>
+                        <a class="link-light small" href="#!">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
 </body>
 </html>

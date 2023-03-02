@@ -5,13 +5,13 @@
     <head>
         <meta charset="UTF-8">
         <title>eshop</title>
-        <link rel="icon" type="image/x-icon" th:href="@{resources/ico/favicon.ico}">
-	 	<link rel="stylesheet" type="text/css" th:href="@{resources/css/style-bgcolor.css}"/>
-		<link rel="stylesheet" type="text/css" th:href="@{resources/css/all.css}"/>
-        <link rel="stylesheet" type="text/css" th:href="@{resources/css/bootstrap.min.css}">
-        <script th:src="@{resources/js/popper.min.js}"></script>
-        <script th:src="@{resources/js/jquery-3.6.3.min.js}"></script>
-        <script th:src="@{resources/js/bootstrap.bundle.min.js}"></script>
+        <link rel="icon" type="image/x-icon" th:href="@{/resources/ico/favicon.ico}">
+	 	<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style-bgcolor.css}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/all.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/resources/css/bootstrap.min.css}">
+        <script th:src="@{/resources/js/popper.min.js}"></script>
+        <script th:src="@{/resources/js/jquery-3.6.3.min.js}"></script>
+        <script th:src="@{/resources/js/bootstrap.bundle.min.js}"></script>
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
@@ -22,7 +22,7 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li sec:authorize="!isAnonymous()" class="nav-item"><a class="nav-link" th:href="@{/show-order}">產品維護</a></li>
+                            <li sec:authorize="!isAnonymous()" class="nav-item"><a class="nav-link" th:href="@{/show-products}">產品維護</a></li>
                             <li sec:authorize="!isAnonymous()" class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolioOrder" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">訂單</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolioOrder">
@@ -35,10 +35,10 @@
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolioCustomer" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">會員</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolioCustomer">
                                     <li><a class="dropdown-item" th:href="@{/customer-home}">基本資料</a></li>
-                                    <li><a class="dropdown-item" th:href="@{/logout}">登出</a></li>
+                                    <li><a sec:authorize="isAnonymous()" class="dropdown-item" th:href="@{/logout}">登入</a></li>
+                                    <li><a sec:authorize="!isAnonymous()" class="dropdown-item" th:href="@{/logout}">登出</a></li>
                                 </ul>
                             </li>
-                            <li sec:authorize="isAnonymous()" class="nav-item"><a class="nav-link" th:href="@{/login}">登入</a></li>
                         </ul>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                       <input type="text" class="form-control" th:field="${order.orderDetail.discount}" readonly>
                     </div>
 
-                    <div class="row">
+                    <div class="row-sm-2">
                       <a th:href="@{/show-order}" class="btn btn-warning">返回</a>
                     </div>
                 </div>

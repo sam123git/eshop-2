@@ -2,7 +2,7 @@
 
 
 html, body {
-	background-image: url("../img/gifbg2.gif");
+	background-image: url("../img/gifbg1.gif");
 	background-size: cover;
 	background-repeat: no-repeat;
 	height: 100%;
@@ -22,19 +22,19 @@ html, body {
 }
 
 .card-header {
-	color: white;
+	color: rgb(0, 0, 0);
 	text-align: center;
 }
 
 .input-group-prepend span {
 	width: 40px;
 	background-color: blue;
-	color: white;
+	color: rgb(0, 0, 0);
 	border: 0 !important;
 }
 
 .login-button {
-	color: white;
+	color: rgb(255, 120, 0);
 	background-color: blue;
 	width: 100px;
 }
@@ -45,7 +45,7 @@ html, body {
 }
 
 .footer {
-	color: white;
+	color: rgb(154, 153, 150);
 }
 
 .footer a {

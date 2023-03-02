@@ -22,7 +22,9 @@
 	   	<a th:href="@{/show-customer-data}" class="btn btn-primary">顯示客戶資料</a>	   	
 	   	<a sec:authorize="isAnonymous()" th:href="@{/login}" class="btn btn-secondary float-right">登入</a>
 		<a sec:authorize="!isAnonymous()" th:href="@{/logout}" class="btn btn-secondary float-right">登出</a>
-		
+		<div class="row-sm-2">
+			<a th:href="@{/}" class="btn btn-warning"> 返回 </a>
+		</div>		
 		<br>
 		<br>
 		<div class="border border-success">

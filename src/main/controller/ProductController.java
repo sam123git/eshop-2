@@ -27,12 +27,12 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-	@GetMapping(value = "showProduct")
-	public String getProduct(Model model) {
-		List<Product> products = productService.getAll();
-		model.addAttribute("products", products);
-		return "product";
-	}
+//	@GetMapping(value = "showProduct")
+//	public String getProduct(Model model) {
+//		List<Product> products = productService.getAll();
+//		model.addAttribute("products", products);
+//		return "product";
+//	}
 	
 	@GetMapping(value = "add-product")
 	public String addProduct(Model model) {

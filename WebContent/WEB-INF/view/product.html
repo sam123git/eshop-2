@@ -4,13 +4,13 @@
 	<head>
         <meta charset="utf-8" />
         <title>eshop</title>
-       <link rel="icon" type="image/x-icon" th:href="@{resources/ico/favicon.ico}">
-	 	<link rel="stylesheet" type="text/css" th:href="@{resources/css/style-bgcolor.css}"/>
-		<link rel="stylesheet" type="text/css" th:href="@{resources/css/all.css}"/>
-        <link rel="stylesheet" type="text/css" th:href="@{resources/css/bootstrap.min.css}">
-        <script th:src="@{resources/js/popper.min.js}"></script>
-        <script th:src="@{resources/js/jquery-3.6.3.min.js}"></script>
-        <script th:src="@{resources/js/bootstrap.bundle.min.js}"></script>
+       	<link rel="icon" type="image/x-icon" th:href="@{/resources/ico/favicon.ico}">
+	 	<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style-bgcolor.css}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/all.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/resources/css/bootstrap.min.css}">
+        <script th:src="@{/resources/js/popper.min.js}"></script>
+        <script th:src="@{/resources/js/jquery-3.6.3.min.js}"></script>
+        <script th:src="@{/resources/js/bootstrap.bundle.min.js}"></script>
 	</head>
 	<body class="d-flex flex-column h-100">
 		<main class="flex-shrink-0">
@@ -21,13 +21,13 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" th:href="@{/login}">登入</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/}">首頁</a></li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">User</a>
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">會員</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                                     <li><a class="dropdown-item" th:href="@{/show-cart}">購物車</a></li>
-                                    <li><a class="dropdown-item" th:href="@{/logout}">登出</a></li>
+                                    <li><a sec:authorize="isAnonymous()" class="dropdown-item" th:href="@{/logout}">登入</a></li>
+                                    <li><a sec:authorize="!isAnonymous()" class="dropdown-item" th:href="@{/logout}">登出</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -80,7 +80,7 @@
 						<h3>沒有任何訂單</h3>
 					</div>
 					
-					<div class="row gx-5 justify-content-center">
+					<div class="row-sm-2 gx-5 justify-content-center">
 						<a th:href="@{/add-product}" class="btn btn-info">新增產品</a>
 						<a th:href="@{/}" class="btn btn-warning">返回</a>
 					</div>
