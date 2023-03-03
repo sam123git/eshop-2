@@ -17,7 +17,7 @@
 	<body class="d-flex flex-column h-100">
 		<main class="flex-shrink-0">
             <!-- Navigation-->
-            <div th:replace="navtopbar :: header"></div> 
+            <div th:replace="navtopbar :: header"></div>
             <!-- Blog preview section-->
             <section class="py-5">
                 <div class="container px-5 my-5">
@@ -43,10 +43,10 @@
 							<tbody>
 								<tr th:each="order : ${orders}">
 									<td th:text="${orderStat.count}"></td>
-									<td th:text="${order.orderDate}"></td>
+									<td th:text="${#dates.format(order.orderDate, 'yyyy-MM-dd')}"></td>
 									<td th:text="${order.customerId}"></td>
 									<td th:text="${order.payment}"></td>
-									<td th:text="${order.amount}"></td>
+									<td th:text="${#strings.replace(#strings.replace(#numbers.formatCurrency(order.amount), '¤', '$'), '.00', '')}"></td>
                                     <td><a class="btn btn-primary" th:href="@{/edit-order/} + ${order.orderId}">編輯</a></td>
                                     <td><a class="btn btn-primary" th:href="@{/edit-order-detail/} + ${order.orderId}">編輯</a></td>
 									<td><a class="btn btn-danger" th:href="@{/delete-order/} + ${order.orderId}">刪除</a></td>
@@ -82,7 +82,7 @@
                             </div>
                         </div>
                     </aside> 
-  		 <!-- Footer-->
-        <div th:replace="navfootbar :: footer"></div>
+        <!-- Footer-->
+        <div th:insert="footer :: footer"></div>
 	</body>
 </html>

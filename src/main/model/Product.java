@@ -3,6 +3,7 @@ package main.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +20,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
@@ -30,7 +33,8 @@ public class Product {
     @Column(name = "product_id")
 	private long productId;
 	
-	@ManyToOne
+	@NotFound(action = NotFoundAction.IGNORE)
+	@ManyToOne(cascade={CascadeType.ALL})
 	@JoinColumn(name = "brand_brand_id")
 	private Brand brand;
 

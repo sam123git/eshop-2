@@ -46,13 +46,13 @@
 									<td th:text="${productStat.count}"></td>					
 									<td th:text="${product.productId}"></td>
 									<td th:text="${product.brand}"></td>
-									<td th:text="${product.name}"></td>
+									<td th:text="${product.productName}"></td>
 									<td th:text="${product.productImage}"></td>
 									<td th:text="${product.productDescription}"></td>
 									<td th:text="${product.productPrice}"></td>
 									<td><input type="number" class="form-control" step="any"  min="0" value="1"></td>
-						<td><a class="btn btn-outline-success" type="submit" th:href="@{/add-to-cart/} + ${product.productId}">加入購物車</a></td>
-									<td><a class="btn btn-primary" th:href="@{/edit-product/} + ${product.productId}">編輯</a></td>
+									<td><a class="btn btn-outline-success" type="submit" th:href="@{/add-product-to-cart/} + ${product.productId}">加入購物車</a></td>
+									<td><a class="btn btn-primary" th:href="@{/edit-products/} + ${product.productId}">編輯</a></td>
 									<td><a class="btn btn-danger" th:href="@{/delete-product/} + ${product.productId}">刪除</a></td>
 								</tr>
 							</tbody>

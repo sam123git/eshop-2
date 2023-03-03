@@ -18,12 +18,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Order {
 
 	public enum Payment {
-		money, card;
+		現金, 信用卡;
 	}
-
-//	public Order() {
-//		setOrderDetail1(new OrderDetail());
-//	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,17 +43,16 @@ public class Order {
 	@Column(name = "amount")
 	private BigDecimal amount = new BigDecimal("0");
 
-//	@OneToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "order_details_id")
-//	private OrderDetail orderDetail;
+	/*
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "order_details_id")
+	private OrderDetails orderDetails;
+	*/
 	
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
 	private List<OrderDetail> orderDetails;
 	
-//	@Column(name = "order_detail1")
-//	private OrderDetail orderDetail1;
-	
-    private Date createTime;
+	private Date createTime;
 	
 	private Date updateTime;
 
@@ -108,23 +103,7 @@ public class Order {
 	public void setOrderDetails(List<OrderDetail> orderDetails) {
 		this.orderDetails = orderDetails;
 	}
-		
-//	public OrderDetail getOrderDetail() {
-//		return orderDetail;
-//	}
-//
-//	public void setOrderDetail(OrderDetail orderDetail) {
-//		this.orderDetail = orderDetail;
-//	}
-//
-//	public OrderDetail getOrderDetail1() {
-//		return orderDetail1;
-//	}
-//
-//	public void setOrderDetail1(OrderDetail orderDetail1) {
-//		this.orderDetail1 = orderDetail1;
-//	}
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
 	@Column(name = "CREATE_TIME", length = 7, updatable = false)

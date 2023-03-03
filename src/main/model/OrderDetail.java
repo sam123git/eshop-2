@@ -7,6 +7,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import javax.validation.constraints.Min;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Entity
 @Table(name = "order_detail")
@@ -25,13 +28,16 @@ public class OrderDetail {
 
     @Column(name = "product_id")
     private long productId;
-    
+
+    @Min(value = 0, message = "{detail.price}")
     @Column(name = "order_price")
     private BigDecimal orderPrice = new BigDecimal("0");
-    
-    @Column(name = "order_quantity")
-    private long orderQuantity;
 
+    @Min(value = 1, message = "{detail.quantity}")
+    @Column(name = "order_quantity")
+    private long orderQuantity = 1;
+
+    @Min(value = 0, message = "{detail.discount}")
     @Column(name = "discount")
     private BigDecimal discount = new BigDecimal("0");
     
@@ -56,7 +62,7 @@ public class OrderDetail {
     }
 
     public BigDecimal getOrderPrice() {
-        return orderPrice;
+        return orderPrice.setScale(0, RoundingMode.DOWN);
     }
 
     public void setOrderPrice(BigDecimal orderPrice) {
@@ -72,7 +78,7 @@ public class OrderDetail {
     }
 
     public BigDecimal getDiscount() {
-        return discount;
+        return discount.setScale(0, RoundingMode.DOWN);
     }
 
     public void setDiscount(BigDecimal discount) {
