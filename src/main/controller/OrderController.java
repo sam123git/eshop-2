@@ -17,6 +17,11 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMappi
 import main.model.Order;
 import main.service.OrderService;
 
+/**
+ * 訂單控制器
+ * @author sam
+ *
+ */
 @Controller
 public class OrderController {
 	
@@ -26,12 +31,21 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 
+	/**
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/add-order")
 	public String showForm(Model model) {
 		model.addAttribute("order", new Order());
 		return "order-form";
 	}
 	
+	/**
+	 * @param order
+	 * @param bindingResult
+	 * @return
+	 */
 	@PostMapping("/order-process-form")
 	public String showOrderData(@Valid @ModelAttribute Order order, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
@@ -41,6 +55,10 @@ public class OrderController {
 		return "redirect:show-order";
 	}
 
+	/**
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/show-order")
 	public String getOrders(Model model) {
 		List<Order> orders = orderService.getAll();
@@ -48,6 +66,10 @@ public class OrderController {
 		return "orders";
 	}
 
+	/**
+	 * @param orderId
+	 * @return
+	 */
 	@GetMapping("/delete-order/{orderId}")
 	public String deleteOrder(@PathVariable long orderId) {
 		Order order = orderService.getById(orderId);
@@ -57,6 +79,11 @@ public class OrderController {
 		return "redirect:/show-order";
 	}
 
+	/**
+	 * @param orderId
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/edit-order/{orderId}")
 	public String editOrder(@PathVariable long orderId, Model model) {
 		Order order = orderService.getById(orderId);

@@ -20,6 +20,11 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMappi
 import main.model.Customer;
 import main.service.CustomerService;
 
+/**
+ * 客戶控制器
+ * @author sam
+ *
+ */
 @Controller
 public class CustomerController {
 	
@@ -29,12 +34,21 @@ public class CustomerController {
 		@Autowired
 		private CustomerService customerService;
 		
+		/**
+		 * @param model
+		 * @return
+		 */
 		@GetMapping("/add-customer")
 		public String showForm(Model model) {
 			model.addAttribute("customer", new Customer());
 			return "customer-form";		
 		}
 		
+		/**
+		 * @param customer
+		 * @param bindingResult
+		 * @return
+		 */
 		@PostMapping("/process-customer-form")
 		public String showCustomerData(@Valid @ModelAttribute Customer customer, BindingResult bindingResult) {
 			if(bindingResult.hasErrors()) {
@@ -44,6 +58,10 @@ public class CustomerController {
 			return "redirect:show-customer-data";
 		}
 		
+		/**
+		 * @param model
+		 * @return
+		 */
 		@GetMapping("/show-customer-data")
 		public String getCustomers(Model model) {
 			List<Customer> customers = customerService.getAll();
@@ -51,6 +69,10 @@ public class CustomerController {
 			return "customers";
 		}
 		
+		/**
+		 * @param customerId
+		 * @return
+		 */
 		@GetMapping("/delete-customer/{customerId}")
 		public String deleteCustomer(@PathVariable("customerId") long customerId) {
 			Customer customer = customerService.getById(customerId);
@@ -60,6 +82,11 @@ public class CustomerController {
 			return "redirect:/show-customer-data";
 		}
 		
+		/**
+		 * @param customerId
+		 * @param model
+		 * @return
+		 */
 		@GetMapping("/edit-customer/{customerId}")
 		public String editCustomer(@PathVariable("customerId") long customerId, Model model) {
 			Customer customer = customerService.getById(customerId);
@@ -70,6 +97,11 @@ public class CustomerController {
 			return "redirect:/show-customer-data";
 		}
 		
+		/**
+		 * @param customerId
+		 * @param principal
+		 * @return
+		 */
 		@GetMapping("/add-user-to-customer/{customerId}")
 		public String addUserToCustomer(@PathVariable long customerId, Principal principal) {
 			customerService.addUserToCustomer(customerId, principal.getName());
@@ -82,6 +114,9 @@ public class CustomerController {
 //			return "redirect:/show-customer-data";
 //		}
 		
+		/**
+		 * @return
+		 */
 		@RequestMapping("/customer-home")
 		public String getCustomerHome() {
 			return "home";

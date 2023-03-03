@@ -13,6 +13,12 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMappi
 import main.model.Cart;
 import main.service.CartService;
 
+/**
+ * 購物車控制器
+ * @author sam
+ *
+ */
+
 @Controller
 public class CartController {
 	
@@ -22,6 +28,10 @@ public class CartController {
 	@Autowired
     private CartService cartService;
 	
+	/**
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/show-cart")
 	public String showCart(Model model) {
         List<Cart> carts = cartService.getAll();
@@ -29,6 +39,11 @@ public class CartController {
 		return "cart";
 	}
 	
+	/**
+	 * @param cartId
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/edit-cart/{cartId}")
     public String editCart(@PathVariable long cartId, Model model) {
         Cart cart = cartService.getById(cartId);
@@ -39,17 +54,29 @@ public class CartController {
 		return "redirect:/show-cart";
 	}
 	
+	/**
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/add-cart")
 	public String addCart(Model model) {
 		model.addAttribute("cart", new Cart());
 		return "cart-form";
 	}
 	
+	/**
+	 * @param cart
+	 * @return
+	 */
 	@PostMapping("/process-cart-form")
 	public String showCartDetail(Cart cart) {
 		return "cart-form";
 	}
 	
+	/**
+	 * @param cartId
+	 * @return
+	 */
 	@GetMapping("/delete-cart/{cartId}")
 	public String deleteCart(@PathVariable long cartId) {
         Cart cart = cartService.getById(cartId);

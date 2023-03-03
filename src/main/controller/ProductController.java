@@ -18,6 +18,11 @@ import main.model.Cart;
 import main.model.Product;
 import main.service.ProductService;
 
+/**
+ * 產品控制器
+ * @author sam
+ *
+ */
 @Controller
 public class ProductController {
 	
@@ -34,12 +39,21 @@ public class ProductController {
 //		return "product";
 //	}
 	
+	/**
+	 * @param model
+	 * @return
+	 */
 	@GetMapping(value = "add-product")
 	public String addProduct(Model model) {
 		model.addAttribute("product", new Product());
 		return "product-form";
 	}
 	
+	/**
+	 * @param product
+	 * @param bindingResult
+	 * @return
+	 */
 	@PostMapping(value = "process-product-form")
 	public String showProductData(@Valid @ModelAttribute Product product, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
@@ -49,6 +63,10 @@ public class ProductController {
 		return "redirect:show-products";
 	}
 	
+	/**
+	 * @param model
+	 * @return
+	 */
 	@GetMapping(value = "show-products")
 	public String getProducts(Model model) {
         List<Product> products = productService.getAll();
@@ -56,6 +74,11 @@ public class ProductController {
 		return "product";
 	}
 
+    /**
+     * @param productId
+     * @param model
+     * @return
+     */
     @GetMapping(value = "edit-products/{productId}")
     public String editProduct(@PathVariable long productId, Model model) {
         Product brand = productService.getById(productId);
@@ -66,17 +89,29 @@ public class ProductController {
         return "redirect:/show-product";
     }
 
+    /**
+     * @param model
+     * @return
+     */
     @GetMapping(value = "add-product-to-cart")
     public String addBrand(Model model) {
         model.addAttribute("product", new Cart());
         return "product-form";
     }
 
+    /**
+     * @param product
+     * @return
+     */
     @PostMapping(value = "process-product-brand-form")
     public String showBrandDetail(Product product) {
         return "product-form";
     }
 
+    /**
+     * @param productId
+     * @return
+     */
     @GetMapping(value = "delete-product/{productId}")
     public String deleteProduct(@PathVariable long productId) {
         Product cart = productService.getById(productId);

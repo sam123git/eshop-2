@@ -17,6 +17,11 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
+/**
+ * 設定檔
+ * @author sam
+ *
+ */
 @Configuration
 @EnableWebMvc
 @ComponentScan("main")

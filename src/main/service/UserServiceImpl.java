@@ -11,6 +11,11 @@ import main.model.User;
 import main.repository.RoleRepository;
 import main.repository.UserRepository;
 
+/**
+ * 用戶服務接口
+ * @author sam
+ *
+ */
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
@@ -21,6 +26,9 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private RoleRepository roleRepository;
 	
+	/**
+	 *password encoder& user login set role to client 
+	 */
 	@Override
 	public void createNewAccount(User user) {
 		user.setEnabled(true);

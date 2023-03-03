@@ -4,17 +4,18 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <meta charset="UTF-8">
-        <title>eshop</title>
+        <title>電 子 商 城</title>
         <link rel="icon" type="image/x-icon" th:href="@{/resources/ico/favicon.ico}">
 	 	<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style-bgcolor.css}"/>
 		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/all.css}"/>
         <link rel="stylesheet" type="text/css" th:href="@{/resources/css/bootstrap.min.css}">
+        <script th:src="@{/resources/js/all.js}"></script>
         <script th:src="@{/resources/js/popper.min.js}"></script>
         <script th:src="@{/resources/js/jquery-3.6.3.min.js}"></script>
         <script th:src="@{/resources/js/bootstrap.bundle.min.js}"></script>    
     </head>
     <body class="d-flex flex-column h-100">      
-            <div th:replace="header :: header"></div>      
+            <div th:replace="navtopbar :: header"></div>      
             <!-- Blog preview section-->
             <section class="py-5">
                 <div class="container px-5 my-5">
@@ -79,6 +80,6 @@
                 </div>
             </section>     
         <!-- Footer-->
-        <div th:replace="footer :: footer"></div> 
+        <div th:replace="navfootbar :: footer"></div> 
     </body>
 </html>

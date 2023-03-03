@@ -1,6 +1,7 @@
 package main.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -13,6 +14,11 @@ import main.model.User;
 import main.repository.CustomerRepository;
 import main.repository.UserRepository;
 
+/**
+ * 客戶服務接口
+ * @author sam
+ *
+ */
 @Service
 @Transactional
 public class CustomerServiceImpl implements CustomerService{
@@ -33,10 +39,23 @@ public class CustomerServiceImpl implements CustomerService{
 		return customerRepository.findById(customerId).get();
 	}
 	
+	/**
+	 *create time＆update time logic set here
+	 */
 	@Override
 	public void saveOrUpdate(Customer customer) {
+		Date setDate = new Date();
+		 if (customer.getCustomerId()!=0) {
+	            customer.setUpdateTime(setDate);
+	            customer.getUser().setUpdateTime(setDate);
+	        } else {
+	            customer.setCreateTime(setDate);
+
+	        }
 		customerRepository.save(customer);
 	}
+	
+	
 
 //	@Override
 //	public Customer getByIdWithComments(long customerId) {
@@ -85,4 +104,13 @@ public class CustomerServiceImpl implements CustomerService{
 		}
 	}
 
+	@Override
+	public Customer getByUserId(long userId) {
+	List<Customer> customers = customerRepository.getByUserId(userId);
+	if (!customers.isEmpty()) {
+		return customers.get(0);
+	}		
+		return null;
+	}
+	
 }

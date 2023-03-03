@@ -10,6 +10,11 @@ import org.springframework.stereotype.Service;
 import main.model.Brand;
 import main.repository.BrandRepository;
 
+/**
+ * 廠牌服務接口
+ * @author sam
+ *
+ */
 @Service
 @Transactional
 public class BrandServiceImpl implements BrandService {

@@ -13,6 +13,11 @@ import main.model.OrderDetail;
 import main.service.OrderDetailService;
 import main.service.OrderService;
 
+/**
+ * 訂單控制器
+ * @author sam
+ *
+ */
 @Controller
 public class OrderDetailController {
 
@@ -22,12 +27,21 @@ public class OrderDetailController {
     @Autowired
     private OrderDetailService orderDetailService;
 
+    /**
+     * @param orderDetail
+     * @return
+     */
     @PostMapping("/order-detail-process-form")
     public String processOrderDetailData(@ModelAttribute OrderDetail orderDetail) {
         orderDetailService.saveOrUpdate(orderDetail);
         return "redirect:/show-order";
     }
 
+    /**
+     * @param orderId
+     * @param model
+     * @return
+     */
     @GetMapping("/show-order-detail/{orderId}")
     public String showOrderDetail(@PathVariable long orderId, Model model) {
         Order order = orderService.getById(orderId);
@@ -38,6 +52,11 @@ public class OrderDetailController {
         return "redirect:/show-order";
     }
 
+    /**
+     * @param orderId
+     * @param model
+     * @return
+     */
     @GetMapping("/edit-order-detail/{orderId}")
     public String editOrderDetail(@PathVariable long orderId, Model model) {
         Order order = orderService.getById(orderId);

@@ -1,5 +1,6 @@
 package main.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -10,6 +11,11 @@ import org.springframework.stereotype.Service;
 import main.model.Product;
 import main.repository.ProductRepository;
 
+/**
+ * 產品服務接口
+ * @author sam
+ *
+ */
 @Service
 @Transactional
 public class ProductServiceImpl implements ProductService {
@@ -27,8 +33,19 @@ public class ProductServiceImpl implements ProductService {
 		return productRepository.findById(productId).orElseGet(null);
 	}
 
+	/**
+	 *create time＆update time logic set here
+	 */
 	@Override
 	public void saveOrUpdate(Product product) {
+		Date setDate = new Date();
+		 if (product.getProductId()!=0) {
+			 product.setUpdateTime(setDate);
+			 product.getBrand().setUpdateTime(setDate);
+	        } else {
+	        	product.setCreateTime(setDate);
+
+	        }
 		productRepository.save(product);
 	}
 

@@ -10,6 +10,11 @@ import org.springframework.stereotype.Service;
 import main.dao.OrderDAO;
 import main.model.Order;
 
+/**
+ * 訂單服務接口
+ * @author sam
+ *
+ */
 @Service
 @Transactional
 public class OrderServiceImpl implements OrderService {

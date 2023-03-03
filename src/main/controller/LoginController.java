@@ -13,6 +13,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import main.model.User;
 import main.service.UserService;
 
+/**
+ * 登入控制器
+ * @author sam
+ *
+ */
 @Controller
 public class LoginController {
 	
@@ -22,22 +27,37 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 	
+	/**
+	 * @return
+	 */
 	@RequestMapping("/login")
 	public String showLoginPage() {
 		return "login";
 	}
 	
+	/**
+	 * @return
+	 */
 	@RequestMapping("/forbidden")
 	public String showForbiddenError() {
 		return "403";
 	}
 	
+	/**
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/sign-up")
 	public String signUp(Model model) {
 		model.addAttribute("user", new User());
 		return "customer-form-signup";
 	}
 	
+	/**
+	 * @param user
+	 * @param redirectAttributes
+	 * @return
+	 */
 	@PostMapping("/process-sign-up")
 	public String processSignup(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
 		boolean errors = false;

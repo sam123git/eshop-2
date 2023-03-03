@@ -10,6 +10,11 @@ import org.springframework.stereotype.Service;
 import main.model.Cart;
 import main.repository.CartRepository;
 
+/**
+ * 購物車服務接口
+ * @author sam
+ *
+ */
 @Service
 @Transactional
 public class CartServiceImpl implements CartService {

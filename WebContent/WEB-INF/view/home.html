@@ -9,13 +9,14 @@
 	 	<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style-bgcolor.css}"/>
 		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/all.css}"/>
         <link rel="stylesheet" type="text/css" th:href="@{/resources/css/bootstrap.min.css}">
+        <script th:src="@{/resources/js/all.js}"></script>
         <script th:src="@{/resources/js/popper.min.js}"></script>
         <script th:src="@{/resources/js/jquery-3.6.3.min.js}"></script>
         <script th:src="@{/resources/js/bootstrap.bundle.min.js}"></script>
 </head>
 <body>
     <!-- Navigation-->
-	<div th:replace="header :: header"></div> 
+	<div th:replace="navtopbar :: header"></div> 
 	<!-- Blog preview section-->
 	 <section class="py-5">
                 <div class="container px-5 my-5">
@@ -66,6 +67,6 @@
                     </aside>
          </section> 
   		 <!-- Footer-->
-        <div th:replace="footer :: footer"></div> 
+        <div th:replace="navfootbar :: footer"></div> 
 </body>
 </html>

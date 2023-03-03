@@ -16,6 +16,11 @@ import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
+/**
+ * 設定檔
+ * @author sam
+ *
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -35,26 +40,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth
-		.inMemoryAuthentication()
-		.withUser("John").password(passwordEncoder().encode("admin")).roles("ADMIN")
-		.and()
-		.withUser("Eric").password(passwordEncoder().encode("employee")).roles("EMPLOYEE")
-		.and()
-		.withUser("Michael").password(passwordEncoder().encode("client")).roles("CLIENT");
-	}
 //		auth
-//			.jdbcAuthentication().dataSource(dataSource)
-//			.usersByUsernameQuery("select login, password, enabled from user where login=?")
-//			.authoritiesByUsernameQuery("select login, role from role where login=?");
+//		.inMemoryAuthentication()
+//		.withUser("John").password(passwordEncoder().encode("admin")).roles("ADMIN")
+//		.and()
+//		.withUser("Eric").password(passwordEncoder().encode("employee")).roles("EMPLOYEE")
+//		.and()
+//		.withUser("Michael").password(passwordEncoder().encode("client")).roles("CLIENT");
 //	}
+		auth
+			.jdbcAuthentication().dataSource(dataSource)
+			.usersByUsernameQuery("select login, password, enabled from user where login=?")
+			.authoritiesByUsernameQuery("select login, role from role where login=?");
+	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		//unicode UTF-8
 		CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");
         filter.setForceEncoding(true);
         http.addFilterBefore(filter,CsrfFilter.class);
+        
 		http.authorizeRequests()
 			.antMatchers("/", "/login")
 				.permitAll()
