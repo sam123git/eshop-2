@@ -65,7 +65,7 @@ public class Role {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
-	@Column(name = "CREATE_TIME", length = 7, updatable = false)
+//	@Column(name = "CREATE_TIME", length = 7, updatable = false)
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -75,7 +75,7 @@ public class Role {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@UpdateTimestamp
-	@Column(name = "UPDATE_TIME", length = 7)
+//	@Column(name = "UPDATE_TIME", length = 7)
 	public Date getUpdateTime() {
 		return updateTime;
 	}

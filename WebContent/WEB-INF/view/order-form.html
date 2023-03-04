@@ -33,27 +33,7 @@
 								<div class="form-group">
 									<input type="hidden" class="form-control" th:field="*{orderId}">
 								</div>
-								
-								<div class="form-group">
-									<input type="hidden" class="form-control" th:field="*{orderDetail.orderDetailId}">
-								</div>
-					
-								<div class="form-group">
-									<input type="hidden" class="form-control" th:field="*{orderDetail.productId}">
-								</div>
-
-                                <div class="form-group">
-                                    <input type="hidden" class="form-control" th:field="*{orderDetail.orderPrice}">
-                                </div>
-					
-								<div class="form-group">
-									<input type="hidden" class="form-control" th:field="*{orderDetail.orderQuantity}">
-								</div>
-								
-								<div class="form-group">
-									<input type="hidden" class="form-control" th:field="*{orderDetail.discount}">
-								</div>
-								
+															
 								<div class="form-group">
 									<label>訂單日期</label>
 									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('orderDate')}" th:errors="*{orderDate}"></div>

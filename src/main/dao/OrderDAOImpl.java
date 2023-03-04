@@ -14,10 +14,12 @@ public class OrderDAOImpl implements OrderDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	//在JPQL语法中，select a from 类名 a 这语句中的类名其实不只是参照你的实体类名，他会优先参照的是你在实体类上使用的注解@Entity(name = "tab_admin")中的自定义name字段
+	//"from orders o"中的orders位置要用Order.java內的 @Entity(name = "orders") 的"orders"
 	@Override
 	public List<Order> getAll() {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from Order o", Order.class).list();
+		return session.createQuery("from orders o", Order.class).list();
 	}
 
 	@Override

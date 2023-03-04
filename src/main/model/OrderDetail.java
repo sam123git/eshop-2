@@ -1,15 +1,14 @@
 package main.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import javax.validation.constraints.Min;
-import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Date;
 
 @Entity
 @Table(name = "order_detail")
@@ -19,12 +18,6 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_detail_id")
     private long orderDetailId;
-    
-    
-    @ManyToOne
-	@JoinColumn(name = "orders_order_id")
-	private Order order;
-    
 
     @Column(name = "product_id")
     private long productId;
@@ -40,6 +33,10 @@ public class OrderDetail {
     @Min(value = 0, message = "{detail.discount}")
     @Column(name = "discount")
     private BigDecimal discount = new BigDecimal("0");
+    
+    @ManyToOne
+	@JoinColumn(name = "orders_order_id")
+	private Order order;
     
     private Date createTime;
 	
@@ -84,20 +81,18 @@ public class OrderDetail {
     public void setDiscount(BigDecimal discount) {
         this.discount = discount;
     }
-    
-    /*
-    public Order getOrder() {
-        return order;
-    }
 
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-    */
-    
-    @Temporal(TemporalType.TIMESTAMP)
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
-	@Column(name = "CREATE_TIME", length = 7, updatable = false)
+//	@Column(name = "CREATE_TIME", length = 7, updatable = false)
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -107,7 +102,7 @@ public class OrderDetail {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@UpdateTimestamp
-	@Column(name = "UPDATE_TIME", length = 7)
+//	@Column(name = "UPDATE_TIME", length = 7)
 	public Date getUpdateTime() {
 		return updateTime;
 	}

@@ -46,7 +46,7 @@ public class Customer {
 	@NotBlank(message = "{customer.companyName.notblank}")
 	@Size(min = 2, max = 20, message = "{customer.name.size}")
 	@Column(length = 20)
-	@Pattern(regexp = "^[\\u4e00-\\u9fa5]+\\u516C\\u53F8$", message = "{customer.companyName.type}")
+	@Pattern(regexp = "^[\\u4e00-\\u9fa5]+$", message = "{customer.companyName.type}")
 	private String companyName;
 	
 	@NotBlank(message = "{customer.contactName.notblank}")
@@ -162,7 +162,7 @@ public class Customer {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
-	@Column(name = "CREATE_TIME", length = 7, updatable = false)
+//	@Column(name = "CREATE_TIME", length = 7, updatable = false)
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -172,7 +172,7 @@ public class Customer {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@UpdateTimestamp
-	@Column(name = "UPDATE_TIME", length = 7)
+//	@Column(name = "UPDATE_TIME", length = 7)
 	public Date getUpdateTime() {
 		return updateTime;
 	}
