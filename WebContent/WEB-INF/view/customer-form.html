@@ -91,8 +91,9 @@
 								<script>
 									function myFunction() {
 									  let text; 
-									  if (confirm("表單確認送出嗎？") == true) {
-										  window.alert(text = "表單會在正確填寫後送出");
+									  if (confirm("確認後表單會在正確填寫後送出") == true) {
+										  //設置db的此三欄位為UNIQUE使表單送出後欄位若輸入資料庫已存在的值時會exception
+										  window.alert(text = "提示：若出現Internal Server Error表示公司名稱或聯絡人或聯絡電話中任一欄填入內容資料庫已存在,請重新輸入");
 										  } else {
 											  window.alert(text = "取消送出表單");
 											  event.preventDefault();
